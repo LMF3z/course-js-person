@@ -1,0 +1,1 @@
+// declarar una funcion que reciba grados
