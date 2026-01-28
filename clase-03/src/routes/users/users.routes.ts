@@ -1,18 +1,11 @@
 import { Router } from "express"
+import { getAllUsersController, getUserByIdController } from "../../controllers/users/users.controllers.ts"
 
 const router = Router()
 
-router.get("/", (_, res) => {
-    res.json({ message: "Usuarios route works!" })
-})
+router.get("/", getAllUsersController)
 
-router.get("/:id", (req, res) => {
-    const { id } = req.params
-
-    res.json({
-        message: `Usuario con el id: ${id}`
-    })
-})
+router.get("/:id", getUserByIdController)
 
 router.post("/", (req, res) => {
     const body = req.body
