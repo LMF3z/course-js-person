@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express'
+import type { UserI } from '../../entities/users/user.entity.ts';
 
-const usersList = [
+const usersList: UserI[] = [
   { id: 1, name: 'Alice', email: 'alice@example.com' },
   { id: 2, name: 'Bob', email: 'bob@example.com' },
   { id: 3, name: 'Charlie', email: 'charlie@example.com' },
@@ -54,5 +55,21 @@ export const getUserByNameController = (req:Request, res: Response) => {
     }
 
     res.json(user)    
+}
+
+export const createNewUserController = (req:Request, res: Response) => {
+
+    const bodyData: UserI = req.body
+
+    console.log("Body Data: ", bodyData)
+
+    const newId = usersList.length + 1
+
+    bodyData.id = newId
+
+    usersList.push(bodyData)
+
+    res.status(201).json({ message: "Usuario creado!", data: bodyData })
+
 }
 
