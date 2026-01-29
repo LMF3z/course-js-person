@@ -1,10 +1,14 @@
 // const express = require("express")
 import express from "express"
+import morgan from "morgan"
+
 import router from "./routes/index.ts"
 
 const port = 3001
 
 const app = express()
+
+app.use(morgan('tiny'))
 
 app.get("/", (_, res) => {
 

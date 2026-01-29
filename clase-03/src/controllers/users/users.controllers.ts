@@ -31,3 +31,28 @@ export const getUserByIdController = (req:Request, res: Response) => {
 
     res.json(user)    
 }
+
+// /users/search/query?name=Alice&id=1
+export const getUserByNameController = (req:Request, res: Response) => {
+    const { name, id } = req.query
+
+    const user = usersList.find((user) => {
+        if(user.name.toLowerCase() === String(name).toLowerCase()
+            && user.id === Number(id)
+        ) {
+            return user
+        }
+
+        return null
+    })
+
+    if(!user) {
+
+        res.status(404).json({ message: "Usuario no encontrado" })
+
+        return
+    }
+
+    res.json(user)    
+}
+
